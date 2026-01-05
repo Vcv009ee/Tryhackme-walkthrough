@@ -1,0 +1,100 @@
+## A Detailed Writeup of CSRF Room
+
+Date-2 January 2026
+Difficulty-Medium
+
+I am actively learning different attacks so i just decided to make a grip on CSRF Vunerablity when i started the room it has 
+total 9 tasks at all.
+
+**At first** i get to know about CSRF that 
+
+CSRF is a type of security vulnerability where an attacker tricks a user's web browser into performing an   unwanted action on a trusted site where the user is authenticated.
+
+Its Efeects like
+1-Unauthorised Access
+2-Exploiting Trust
+3-Stealthy Exploitation
+
+Then i learned about different different types of csrf such as Traditional CSRF,XMLHttpRequest CSRF and Flash-based CSRF.
+
+**Traditional CSRF**:- An attacker tricks our logged-in browser into sending a request to a site we're authenticated on—like changing our bank password—without knowing us.
+
+**XMLHttpRequest**:-In this type of attack attackers bascically sends a Javascript code silently send a password change request to our Bank,Accounts etc using our login cookies without showing any popup or form.
+
+**Flash-based CSRF**:-In this the Malicious Flash (.swf) file bypasses browser security to send authenticated requests (POST/GET) to sites we're logged into, like banks.
+
+## Task 4(Here the main practical learning begins)
+
+In this task i learned that the attacker hides malicious link in phishing email with hidden form of
+`<a href="/dashboard.php?to_account=ATTACKER&amount=1000">`.
+When someone directs on browser itb redirect the request directly to "Bank Transfer" using victim's cookies.
+
+If there is no csrf_token then server accept any request with correct parameter.
+**For Fix it uses**: `<input type="hidden" name="csrf_token" value="unique">` + server check.
+
+**Key Vulnerability**: No CSRF token → Any site can state changes easily.
+
+## Task 5
+
+At First i learned about the **Double site cookies** that the double site cookie contains the two part in which one part contain cookie value and other contain the main data which have to be transferred with cookie.
+
+If at the authentication level the value gets match then it would be considered as legitimate value.Then i learned different different vunerable scanerio such as 
+
+-Session Cookie Hijacking (Man in the Middle Attack)
+-Subverting the Same-Origin Policy (Attacker Controlled Subdomain)
+-Exploiting XSS Vulnerabilities
+-Predicting or Interfering with Token Generation
+-Subdomain Cookie Injection
+
+In this we get theat due to the availablity of JavaScript value its is very predictable to get the value of **bank account token** in this scanerio.
+
+when an attacker see that there is weak cookie hiding and he get to know that the website is using the type of bank detail as a cookie data in double site cookies.
+Then he prepare a payload and get access by changing the poassword with the help of phishing mail.
+
+**Vunerablity**
+
+-Server validates: if($_COOKIE['csrf-token'] == $_POST['csrf_token'])
+-Predictable tokens allow exact match
+
+**Prevention to be needed**
+
+-Cryptographically random tokens
+-No subdomain cookie injection
+
+**My Key Learning(In simple words)**
+ Different/random tokens per transaction prevent attacks (tokens expire/change).
+
+## TASK 6
+
+At this point when i heard the term SameSite i somehow think about the transferring of data from the one part of site from the user to anathor part of site.
+
+What Changed
+In this task, the bank adds the **SameSite=Lax** attribute to the `csrf-token` cookie.  
+This tells the browser: “Do NOT send this cookie on cross-site POST requests.”
+
+Here,Same attacker page tries to use the `csrf-token` cookie.
+-When the browser sends a **cross-site POST** to `mybank.thm`, `SameSite=Lax` blocks the `csrf-token` cookie.
+-Server receives **no csrf-token cookie**, so the validation fails and the request is rejected.
+
+**Key-Learning**
+-Just having a CSRF token is not enough; how the cookie is sent (SameSite attribute) is also important for security.
+-SameSite=Lax stops CSRF attacks that rely on **cross-site POSTs** and cookie injection from another site/subdomain.
+
+## Task 7
+
+In this task we learned about the second **SameSite method** name **STRICT** which tell that if there is any request from other subdomain then it will gets block  by the cookie.
+
+**Key Learning**
+-Strict = maximum CSRF protection
+-Best for high-security apps like banking
+
+After these all practical learning i finally conclude that 
+**I test CSRF by building real exploits (subdomain injection, image tags) + verify full defense stack from tokens → SameSite → CSP.**
+
+Thankyou!
+
+
+
+
+
+
