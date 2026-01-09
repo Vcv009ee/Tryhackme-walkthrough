@@ -1,6 +1,7 @@
 ## A Detailed Writeup of CSRF Room
 
 Date-2 January 2026
+
 Difficulty-Medium
 
 I am actively learning different attacks so i just decided to make a grip on CSRF Vunerablity when i started the room it has 
@@ -55,7 +56,7 @@ Then he prepare a payload and get access by changing the poassword with the help
 
 **Vunerablity**
 
--Server validates: if($_COOKIE['csrf-token'] == $_POST['csrf_token'])
+-Server validates:  `if($_COOKIE['csrf-token'] == $_POST['csrf_token'])`
 -Predictable tokens allow exact match
 
 **Prevention to be needed**
