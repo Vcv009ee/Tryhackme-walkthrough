@@ -66,7 +66,7 @@ Then he prepare a payload and get access by changing the poassword with the help
 **My Key Learning(In simple words)**
  Different/random tokens per transaction prevent attacks (tokens expire/change).
 
-## TASK 6
+**TASK 6**
 
 At this point when i heard the term SameSite i somehow think about the transferring of data from the one part of site from the user to anathor part of site.
 
@@ -82,7 +82,7 @@ Here,Same attacker page tries to use the `csrf-token` cookie.
 -Just having a CSRF token is not enough; how the cookie is sent (SameSite attribute) is also important for security.
 -SameSite=Lax stops CSRF attacks that rely on **cross-site POSTs** and cookie injection from another site/subdomain.
 
-## Task 7
+ **Task 7**
 
 In this task we learned about the second **SameSite method** name **STRICT** which tell that if there is any request from other subdomain then it will gets block  by the cookie.
 
