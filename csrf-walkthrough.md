@@ -6,9 +6,9 @@ Difficulty-Medium
 I am actively learning different attacks so i just decided to make a grip on CSRF Vunerablity when i started the room it has 
 total 9 tasks at all.
 
-**At first** i get to know about CSRF that 
+*At first* i get to know about CSRF that 
 
-CSRF is a type of security vulnerability where an attacker tricks a user's web browser into performing an   unwanted action on a trusted site where the user is authenticated.
+CSRF is a type of security vulnerability where an attacker tricks a user's web browser into performing an unwanted action on a trusted site where the user is authenticated.
 
 Its Efeects like
 1-Unauthorised Access
@@ -26,15 +26,17 @@ Then i learned about different different types of csrf such as Traditional CSRF,
 ## Task 4(Here the main practical learning begins)
 
 In this task i learned that the attacker hides malicious link in phishing email with hidden form of
-`<a href="/dashboard.php?to_account=ATTACKER&amount=1000">`.
+
+`<a href="/dashboard.php?to_account=ATTACKER&amount=1000">`
+
 When someone directs on browser itb redirect the request directly to "Bank Transfer" using victim's cookies.
 
 If there is no csrf_token then server accept any request with correct parameter.
-**For Fix it uses**: `<input type="hidden" name="csrf_token" value="unique">` + server check.
+*For Fix it uses*: `<input type="hidden" name="csrf_token" value="unique">` + server check.
 
-**Key Vulnerability**: No CSRF token → Any site can state changes easily.
+*Key Vulnerability*: No CSRF token → Any site can state changes easily.
 
-## Task 5
+**Task 5**
 
 At First i learned about the **Double site cookies** that the double site cookie contains the two part in which one part contain cookie value and other contain the main data which have to be transferred with cookie.
 
